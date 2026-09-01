@@ -1,7 +1,7 @@
 import requests
 
 def fetch_random_user_freeapi():
-    url = "https://freeapi.app/docs#tag/public-apis/GET/public/randomusers/user/random"
+    url = "https://api.freeapi.app/api/v1/public/randomusers/user/random"
     response = requests.get(url)
     data = response.json()
 
@@ -17,8 +17,8 @@ def fetch_random_user_freeapi():
 
 def main():
     try: 
-        fetch_random_user_freeapi()
-        
+        username, country = fetch_random_user_freeapi()
+        print(f"Username: {username} \nCountry: {country}")
     except Exception as e:
         print(str(e))
 
