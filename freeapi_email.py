@@ -1,28 +1,30 @@
 import requests
+import json
 
-def fetch_country():
-
+def get_user_email():
     url = "https://api.freeapi.app/api/v1/public/randomusers"
-
     response = requests.get(url)
 
     data = response.json()
 
-    print(data)
+    print(json.dumps(data, indent=4))
+
 
     if data["success"] and "data" in data:
-        country = data["data"]["data"][0]["location"]["country"]
-        return country
+        email = data["data"]["data"][0]["email"]
+        return email
 
     else:
         raise Exception("Failed to fetch user data")
+
+get_user_email()
 
 
 def main():
 
     try:
-        country = fetch_country()
-        print(f"Country: {country}")
+        email = get_user_email()
+        print(f"Email: {email}")
 
     except Exception as e:
         print(str(e))
